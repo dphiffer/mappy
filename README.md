@@ -13,5 +13,5 @@ Now you can load this in a browser at: http://localhost:3000/
 There is also an API endpoint to receive incoming updates, which this curl command is using to update the location:
 
 ```
-curl -d '{"lat":40.761041, "lng":-73.976784}' -H "Content-Type: application/json" http://localhost:3000/update
+curl -d '{"lat":40.761041, "lng":-73.976784, "marker": "NYC"}' -H "Content-Type: application/json" http://localhost:3000/update
 ```

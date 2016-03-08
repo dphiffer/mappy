@@ -11,6 +11,7 @@ app.post('/update', jsonParser, function(req, res) {
 	if (! req.body) {
 		return res.sendStatus(400);
 	}
+	console.log(req.body);
 	io.emit('update', req.body);
 	res.sendStatus(200);
 });
