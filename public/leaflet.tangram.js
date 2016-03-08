@@ -28,7 +28,7 @@ mapzen.whosonfirst.leaflet.tangram = (function(){
 
 			return map;
 		},
-		
+
 		'map': function(id){
 
 			if (! _cache[id]){
@@ -51,10 +51,12 @@ mapzen.whosonfirst.leaflet.tangram = (function(){
 			var tangram = Tangram.leafletLayer({
 				scene: scene,
 				numWorkers: 2,
-        			unloadInvisibleTiles: false,
+				unloadInvisibleTiles: false,
 				updateWhenIdle: false
 			});
-			
+
+			window.scene = tangram.scene;
+
 			return tangram;
 		},
 

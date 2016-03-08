@@ -60,6 +60,33 @@ $(document).ready(function() {
 		"fillOpacity": 0.5
 	};
 
+	var features = [];
+
+	function addPOI(point) {
+		console.log ("Adding:", point);
+		features.push({
+			type: 'Feature',
+			geometry: {
+				type: 'Point',
+				coordinates: [point.lon, point.lat]
+			},
+			properties: {
+				name: point.name || "unknown",
+				type: point.type || "",
+				amenity: point.amenity || "",
+				kind: 'diversePOI'
+			}
+		});
+
+		scene.setDataSource('local', {
+			type: 'GeoJSON',
+			data: {
+				'type': 'FeatureCollection',
+				'features': features
+			}
+		});
+	}
+
 	function setMarker() {
 		if (queue.length == 0) {
 			console.log('nothing in the queue');
@@ -73,10 +100,14 @@ $(document).ready(function() {
 		}
 		marker = L.circleMarker(update, newStyle);
 		marker.addTo(map);
-		popup = update.marker || (update.lat + ', ' + update.lng);
-		popup = formatPopup(popup);
+		var popup = formatPopup(update);
 		marker.bindPopup(popup).openPopup();
-		map.setView(marker.getLatLng(), 14);
+		/*addPOI({
+			lat: update.lat,
+			lon: update.lng,
+			name: formatText(update.marker)
+		});*/
+		map.setView([update.lat, update.lng], 14);
 
 		waiting = true;
 		setTimeout(function() {
@@ -93,12 +124,18 @@ $(document).ready(function() {
 		}
 	}
 
-	function formatPopup(text) {
+	function formatPopup(update) {
+		var popup = update.marker || (update.lat + ', ' + update.lng);
 		for (shortcode in icons) {
 			var re = new RegExp(shortcode, 'g');
-			text = text.replace(re, icons[shortcode]);
+			var replacement = icons[shortcode];
+			if (typeof replacement != 'string') {
+				var index = Math.floor(Math.random() * replacement.length);
+				replacement = replacement[index];
+			}
+			popup = popup.replace(re, replacement);
 		}
-		return text;
+		return popup;
 	}
 
 });
