@@ -17,7 +17,7 @@ app.post('/update', jsonParser, function(req, res) {
 
 io.on('connection', function(socket) {
 	socket.on('update', function(update) {
-		console.log('update: ' + update.lat + ', ' + update.lng);
+		console.log(update);
 		io.emit('update', update);
 	});
 });

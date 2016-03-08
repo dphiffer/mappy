@@ -33,7 +33,7 @@ $(document).ready(function() {
 		} else {
 			marker.setLatLng(update);
 		}
-		marker.bindPopup((update.lat) + ', ' + (update.lng)).openPopup();
+		marker.bindPopup(update.marker).openPopup();
 		waiting = true;
 		setTimeout(function() {
 			waiting = false;
