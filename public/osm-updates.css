@@ -7,3 +7,7 @@ body {
 	height: 100vh;
 	background: #dedede;
 }
+
+.leaflet-popup-content {
+	font-size: 2em;
+}

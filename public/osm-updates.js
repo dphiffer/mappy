@@ -21,6 +21,24 @@ $(document).ready(function() {
 		});
 	});
 
+	var icons = {
+		':hospital:':           '🏥',
+		':baby:':               '👶',
+		':school:':             '🏫',
+		':police_car:':         '🚓',
+		':couple:':             '👫',
+		':toilet:':             '🚽',
+		':syringe:':            '💉',
+		':woman:':              '👩',
+		':family:':             '👪',
+		':house:':              '🏠',
+		':bulb:':               '💡',
+		':oncoming_bus:':       '🚍',
+		':telephone_receiver:': '📞',
+		':office:':             '🏢',
+		':wheelchair:':         '♿️',
+		':womens:':             '🚺'
+	};
 
 	// New markers
 	var newStyle = {
@@ -28,7 +46,7 @@ $(document).ready(function() {
 		"weight": 2,
 		"opacity": 1,
 		"radius": 6,
-		"fillColor": "#ADE66F",
+		"fillColor": "#fc2302",
 		"fillOpacity": 1
 	};
 
@@ -37,8 +55,8 @@ $(document).ready(function() {
 		"color": "#000",
 		"weight": 1,
 		"opacity": 1,
-		"radius": 3,
-		"fillColor": "#000",
+		"radius": 4,
+		"fillColor": "#ADE66F",
 		"fillOpacity": 0.5
 	};
 
@@ -56,6 +74,7 @@ $(document).ready(function() {
 		marker = L.circleMarker(update, newStyle);
 		marker.addTo(map);
 		popup = update.marker || (update.lat + ', ' + update.lng);
+		popup = formatPopup(popup);
 		marker.bindPopup(popup).openPopup();
 		map.setView(marker.getLatLng(), 14);
 
@@ -72,6 +91,14 @@ $(document).ready(function() {
 				setMarker();
 			}
 		}
+	}
+
+	function formatPopup(text) {
+		for (shortcode in icons) {
+			var re = new RegExp(shortcode, 'g');
+			text = text.replace(re, icons[shortcode]);
+		}
+		return text;
 	}
 
 });
