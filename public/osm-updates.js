@@ -21,19 +21,44 @@ $(document).ready(function() {
 		});
 	});
 
+
+	// New markers
+	var newStyle = {
+		"color": "#000",
+		"weight": 2,
+		"opacity": 1,
+		"radius": 6,
+		"fillColor": "#ADE66F",
+		"fillOpacity": 1
+	};
+
+	// Old markers
+	var oldStyle = {
+		"color": "#000",
+		"weight": 1,
+		"opacity": 1,
+		"radius": 3,
+		"fillColor": "#000",
+		"fillOpacity": 0.5
+	};
+
 	function setMarker() {
 		if (queue.length == 0) {
 			console.log('nothing in the queue');
 			return;
 		}
+
 		var update = queue.shift();
 		console.log('setMarker', update);
-		if (! marker) {
-			marker = L.marker([update.lat, update.lng]).addTo(map);
-		} else {
-			marker.setLatLng(update);
+		if (marker) {
+			marker.setStyle(oldStyle);
 		}
-		marker.bindPopup(update.marker).openPopup();
+		marker = L.circleMarker(update, newStyle);
+		marker.addTo(map);
+		popup = update.marker || (update.lat + ', ' + update.lng);
+		marker.bindPopup(popup).openPopup();
+		map.setView(marker.getLatLng(), 14);
+
 		waiting = true;
 		setTimeout(function() {
 			waiting = false;
