@@ -23,8 +23,8 @@ $(document).ready(function() {
 	mapzen.whosonfirst.leaflet.tangram.scenefile('/tangram/refill.yaml');
 	var socket = io();
 	var map, marker, queue = [], timeout, waiting = false;
-	//$.get('http://ip.dev.mapzen.com/?raw=1', function(rsp) {
-		//var bbox = rsp.geom_bbox.split(',');
+	$.get('http://ip.dev.mapzen.com/?raw=1', function(rsp) {
+		var bbox = rsp.geom_bbox.split(',');
 		var bbox = [-211.9921875, -56.55948248376223,
 		            238.0078125, 69.03714171275197];
 		map = mapzen.whosonfirst.leaflet.tangram.map_with_bbox('map',
@@ -33,15 +33,15 @@ $(document).ready(function() {
 		);
 		window.map = map;
 
-		$.each(updateArchive, function(i, update) {
+		/*$.each(updateArchive, function(i, update) {
 			showMarker(update, true);
-		});
+		});*/
 
 		socket.on('update', function(update) {
 			queue.push(update);
 			checkQueue();
 		});
-	//});
+	});
 
 	var icons = {
 		':hospital:':           '🏥',
