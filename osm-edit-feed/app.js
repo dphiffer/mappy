@@ -4,9 +4,9 @@ var xml2json = require('xml2json');
 
 var slackChannel = process.env.SLACK_CHANNEL;
 var vizChannel = process.env.VIZ_CHANNEL;
+var sharedSecret = process.env.SHARED_SECRET;
 
-
-console.log(slackChannel, vizChannel);
+console.log(slackChannel, vizChannel, sharedSecret);
 
 // presets
 var baseUrl = 'https://overpass-api.de/';
@@ -277,6 +277,7 @@ function makeJSONResponse(type, icon, item) {
     console.log(JSON.stringify(item, null, 2));
   }
 
+  result.secret = sharedSecret;
   console.log(JSON.stringify(result, null, 2));
 
   return result;
