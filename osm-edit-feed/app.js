@@ -61,7 +61,12 @@ var interval = setInterval(function () {
         trim: true,
         arrayNotation: true
       };
-      var obj = xml2json.toJson(xml, options);
+      try {
+        var obj = xml2json.toJson(xml, options);
+      } catch(err) {
+        console.log('Error parsing XML: ' + err.message);
+        return;
+      }
 
       if (!obj.osm || obj.osm.length === 0) {
         console.log('nothing in this update');
