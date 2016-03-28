@@ -1,0 +1,15 @@
+/Users/dphiffer/Sites/osm-edit-feed/node_modules/xml2json/node_modules/node-expat/lib/node-expat.js:23
+  return this.parser.parse(buf, isFinal)
+                       ^
+
+TypeError: Parse buffer must be String or Buffer
+    at TypeError (native)
+        at Parser.parse (/Users/dphiffer/Sites/osm-edit-feed/node_modules/xml2json/node_modules/node-expat/lib/node-expat.js:23:22)
+	    at Object.module.exports [as toJson] (/Users/dphiffer/Sites/osm-edit-feed/node_modules/xml2json/lib/xml2json.js:156:17)
+	        at /Users/dphiffer/Sites/osm-edit-feed/app.js:64:26
+		    at Request._callback (/Users/dphiffer/Sites/osm-edit-feed/app.js:42:5)
+		        at self.callback (/Users/dphiffer/Sites/osm-edit-feed/node_modules/request/request.js:199:22)
+			    at emitOne (events.js:77:13)
+			        at Request.emit (events.js:169:7)
+				    at Request.onRequestError (/Users/dphiffer/Sites/osm-edit-feed/node_modules/request/request.js:821:8)
+				        at emitOne (events.js:77:13)

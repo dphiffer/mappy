@@ -1,0 +1,24 @@
+{
+  "name": "osm-edit-feed-slackbot",
+  "version": "1.0.0",
+  "description": "OSM Changeset Feed Slackbot",
+  "main": "app.js",
+  "engines": {
+    "node": "0.12.0"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Diana Shkolnikov <dianashk@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.3",
+    "moment": "^2.11.2",
+    "osm-stream": "0.0.13",
+    "qs": "^6.1.0",
+    "query-overpass": "^1.1.0",
+    "request": "^2.69.0",
+    "xml2json": "^0.9.0"
+  }
+}
