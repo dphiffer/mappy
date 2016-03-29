@@ -16,6 +16,7 @@ next-steps:
 	#    cd /usr/local/mappy/osm-edit-feed"
 	#    nodejs app.js"
 	# 3. In a new terminal start the Mappy front-end server:"
+	#    (export the same SHARED_SECRET env var)
 	#    cd /usr/local/mappy"
 	#    nodejs app.js"
 

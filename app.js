@@ -15,7 +15,7 @@ app.post('/update', jsonParser, function(req, res) {
 	}
 	console.log(req.body);
 
-	var update = JSON.parse(req.body);
+	var update = req.body;
 	if (! update.secret ||
 	      update.secret != sharedSecret) {
 		console.log('Shared secret did not match.');
