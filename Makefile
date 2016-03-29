@@ -8,15 +8,16 @@ install-modules:
 	cd /usr/local/mappy/osm-edit-feed
 	npm install
 
-secret:
-	export SHARED_SECRET=`openssl rand -base64 32`
-	export UPDATE_URL="http://localhost:3816/update"
-	# 1. Start the osm-edit-feed listener:"
+next-steps:
+	# 1. Set environment vars
+	#    export SHARED_SECRET=`openssl rand -base64 32`
+	#    export UPDATE_URL="http://localhost:3816/update"
+	# 2. Start the osm-edit-feed listener:"
 	#    cd /usr/local/mappy/osm-edit-feed"
 	#    nodejs app.js"
-	# 2. In a new terminal start the Mappy front-end server:"
+	# 3. In a new terminal start the Mappy front-end server:"
 	#    cd /usr/local/mappy"
 	#    nodejs app.js"
 
 all:
-	install-nodejs install-modules secret
+	install-nodejs install-modules next-steps
