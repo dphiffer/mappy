@@ -25,8 +25,8 @@ $(document).ready(function() {
 	var map, marker, queue = [], timeout, waiting = false;
 	$.get('http://ip.dev.mapzen.com/?raw=1', function(rsp) {
 		var bbox = rsp.geom_bbox.split(',');
-		var bbox = [-211.9921875, -56.55948248376223,
-		            238.0078125, 69.03714171275197];
+		//var bbox = [-211.9921875, -56.55948248376223,
+		//            238.0078125, 69.03714171275197];
 		map = mapzen.whosonfirst.leaflet.tangram.map_with_bbox('map',
 			parseFloat(bbox[1]), parseFloat(bbox[0]),
 			parseFloat(bbox[3]), parseFloat(bbox[2])
