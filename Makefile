@@ -19,6 +19,7 @@ next-steps:
 	#    (export the same SHARED_SECRET env var)
 	#    cd /usr/local/mappy"
 	#    nodejs app.js"
+	# 4. Load up http://localhost:3816/ to see the map.
 
 all:
 	install-nodejs install-modules next-steps
