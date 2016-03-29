@@ -28,8 +28,7 @@ Vagrant.configure(2) do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  config.vm.network "forwarded_port", guest: 3816, host: 80
-  config.vm.network "forwarded_port", guest: 3817, host: 443
+  config.vm.network "forwarded_port", guest: 3816, host: 3816
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -69,11 +68,12 @@ Vagrant.configure(2) do |config|
 
 sudo apt-get update
 sudo apt-get upgrade -y
-sudo apt-get install -y git emacs24-nox htop sysstat ufw fail2ban unattended-upgrades
+sudo apt-get install -y git emacs24-nox htop sysstat ufw fail2ban unattended-upgrades build-essential
 
 if [ ! -d /usr/local/mappy/ ]
 then
-  git clone https://github.com/dphiffer/mappy.git /usr/local/mappy
+	git clone https://github.com/dphiffer/mappy.git /usr/local/mappy
+	chown -R vagrant:vagrant /usr/local/mappy
 fi
 
 echo "+---------------------------------------------------------+"
