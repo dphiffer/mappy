@@ -2,11 +2,12 @@ var request = require('request');
 var qs = require('qs');
 var xml2json = require('xml2json');
 
-var slackChannel = process.env.SLACK_CHANNEL;
-var vizChannel = process.env.VIZ_CHANNEL;
+var updateURL = process.env.UPDATE_URL;
 var sharedSecret = process.env.SHARED_SECRET;
 
-console.log(slackChannel, vizChannel, sharedSecret);
+console.log("Starting osm-edit-feed listener.");
+console.log("Shared secret: " + sharedSecret);
+console.log("Update URL: " + updateURL);
 
 // presets
 var baseUrl = 'https://overpass-api.de/';
@@ -200,25 +201,9 @@ function processItem(item) {
 
     console.log('yay, inclusive tag!');
 
-    if (slackChannel) {
+    if (updateURL) {
       request({
-          url: slackChannel,
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(makeResponse(type, icon, obj[0]))
-        },
-        function (err, res, body) {
-          if (err) {
-            console.log('sent update', body)
-          }
-        });
-    }
-
-    if (vizChannel) {
-      request({
-          url: vizChannel,
+          url: updateURL,
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
